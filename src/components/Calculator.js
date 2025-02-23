@@ -5,7 +5,7 @@ const Calculator = (props) => {
   const [fromValue, setFromValue] = useState("");
   const [fromUnit, setFromUnit] = useState("");
   const [toValue, setToValue] = useState("");
-  const [toUnit, setToUnit] = useState(props.dropdown[2]);
+  const [toUnit, setToUnit] = useState("");
 
   const handleFromValue = (e) => {
     const regex = /^[0-9]*\.?[0-9]*$/;
