@@ -48,6 +48,7 @@ const Calculator = (props) => {
           {props.dropdown}
         </select>
       </div>
+      converts to
       <div className="to">
         <input value={toValue} disabled />
         <select value={toUnit} onChange={handleToUnit}>
