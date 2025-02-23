@@ -5,8 +5,7 @@ const Selector = (props) => {
   return (
     <div className="selector">
       <select value={props.ingredient} onChange={props.handleIngredient}>
-        <option value="">What ingredient?</option>
-        <option value="butter">butter</option>
+        {props.dropdown}
       </select>
     </div>
   );

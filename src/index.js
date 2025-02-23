@@ -15,7 +15,11 @@ function App() {
   return (
     <div className="app">
       <h1>Cookulator</h1>
-      <Selector ingredient={ingredient} handleIngredient={handleIngredient} />
+      <Selector
+        ingredient={ingredient}
+        handleIngredient={handleIngredient}
+        dropdown={DROPDOWN["SELECTOR"]}
+      />
       {ingredient && (
         <Calculator
           dropdown={DROPDOWN[ingredient.toUpperCase()]}
