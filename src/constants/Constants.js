@@ -50,6 +50,7 @@ const UNIT_TO_UNIT = (unit) => unit;
 const C_TO_TBSP = (c) => c * 16;
 const C_TO_TSP = (c) => c * 48;
 const LB_TO_OZ = (lb) => lb * 16;
+const LB_TO_G = (lb) => lb * 453.5936;
 const OZ_TO_LB = (oz) => oz * 0.0625;
 const TBSP_TO_C = (tbsp) => tbsp * 0.0625;
 const TBSP_TO_TSP = (tbsp) => tbsp * 3;
