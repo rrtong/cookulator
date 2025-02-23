@@ -1,10 +1,11 @@
 import { React, useState, useEffect } from "react";
+import "../styles/Calculator.css";
 
 const Calculator = (props) => {
   const [fromValue, setFromValue] = useState("");
   const [fromUnit, setFromUnit] = useState("");
   const [toValue, setToValue] = useState("");
-  const [toUnit, setToUnit] = useState("");
+  const [toUnit, setToUnit] = useState(props.dropdown[2]);
 
   const handleFromValue = (e) => {
     const regex = /^[0-9]*\.?[0-9]*$/;
@@ -14,18 +15,20 @@ const Calculator = (props) => {
   };
 
   useEffect(() => {
+    const handleToValue = () => {
+      let convert = props.convert[fromUnit][toUnit];
+      setToValue(convert(fromValue));
+    };
+
     if (fromValue) {
       handleToValue();
+    } else if (fromValue === "" && fromUnit && toUnit) {
+      handleToValue("");
     }
   }, [fromValue, fromUnit, toUnit]);
 
   const handleFromUnit = (e) => {
     setFromUnit(e.target.value);
-  };
-
-  const handleToValue = () => {
-    let convert = props.convert[fromUnit][toUnit];
-    setToValue(convert(fromValue));
   };
 
   const handleToUnit = (e) => {
@@ -34,17 +37,18 @@ const Calculator = (props) => {
 
   return (
     <div className="calculator">
-      <div>
+      <div className="from">
         <input
           value={fromValue}
           onChange={handleFromValue}
           disabled={fromUnit === "" || toUnit === ""}
+          placeholder="Enter number"
         />
         <select value={fromUnit} onChange={handleFromUnit}>
           {props.dropdown}
         </select>
       </div>
-      <div>
+      <div className="to">
         <input value={toValue} disabled />
         <select value={toUnit} onChange={handleToUnit}>
           {props.dropdown}

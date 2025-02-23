@@ -1,0 +1,15 @@
+.selector select {
+  width: 60%;
+  height: 5em;
+  border-radius: 25rem;
+  font-size: 1.15rem;
+  padding: 0.675em 6em 0.675em 1em;
+  background-color: #fff;
+  border: 2px solid #caced1;
+  color: #333;
+  cursor: pointer;
+}
+
+.selector select:hover {
+  background-color: #eee
+}

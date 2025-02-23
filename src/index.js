@@ -1,5 +1,6 @@
 import { React, useState } from "react";
 import ReactDOM from "react-dom/client";
+import Selector from "./components/Selector";
 import Calculator from "./components/Calculator";
 import { DROPDOWN, CONVERT } from "./constants/Constants";
 import "./index.css";
@@ -13,11 +14,8 @@ function App() {
 
   return (
     <div className="app">
-      <h1>cookulator</h1>
-      <select value={ingredient} onChange={handleIngredient}>
-        <option value="">What ingredient?</option>
-        <option value="butter">butter</option>
-      </select>
+      <h1>Cookulator</h1>
+      <Selector ingredient={ingredient} handleIngredient={handleIngredient} />
       {ingredient && (
         <Calculator
           dropdown={DROPDOWN[ingredient.toUpperCase()]}

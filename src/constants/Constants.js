@@ -1,7 +1,7 @@
 export const DROPDOWN = {
   BUTTER: (
     <>
-      <option value=""></option>
+      <option value="">Select units</option>
       <option value="sticksofbutter">Sticks of Butter</option>
       <option value="cups">Cups</option>
       <option value="tablespoons">Tablespoons</option>
