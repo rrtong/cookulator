@@ -8,7 +8,6 @@ export const DROPDOWN = {
   ),
   BUTTER: (
     <>
-      <option value="">Select units</option>
       <option value="sticksofbutter">Sticks of Butter</option>
       <option value="cups">Cups</option>
       <option value="tablespoons">Tablespoons</option>
@@ -21,7 +20,6 @@ export const DROPDOWN = {
   ),
   FLOUR: (
     <>
-      <option value="">Select units</option>
       <option value="tablespoons">Tablespoons</option>
       <option value="teaspoons">Teaspoons</option>
       <option value="cups">Cups</option>
@@ -34,7 +32,6 @@ export const DROPDOWN = {
   ),
   SALT: (
     <>
-      <option value="">Select units</option>
       <option value="smidgens">Smidgens</option>
       <option value="pinches">Pinches</option>
       <option value="dashes">Dashes</option>

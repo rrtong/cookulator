@@ -14,6 +14,15 @@ const Calculator = (props) => {
     }
   };
 
+  // auto-select first two units from dropdown list
+  useEffect(() => {
+    if (props.dropdown.props.children.length > 1) {
+      setFromUnit(props.dropdown.props.children[0].props.value);
+      setToUnit(props.dropdown.props.children[1].props.value);
+    }
+  }, [props.dropdown]);
+
+  // calculation when user input changes
   useEffect(() => {
     const handleToValue = () => {
       let convert = props.convert[fromUnit][toUnit];
