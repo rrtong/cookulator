@@ -1,14 +1,14 @@
-import { React, useState } from "react";
-import ReactDOM from "react-dom/client";
-import Selector from "./components/Selector";
-import Calculator from "./components/Calculator";
-import { DROPDOWN, CONVERT } from "./constants/Constants";
+import { StrictMode, useState } from "react";
+import { createRoot } from "react-dom/client";
+import Selector from "./components/Selector.tsx";
+import Calculator from "./components/Calculator.tsx";
+import { DROPDOWN, CONVERT } from "./constants/Constants.tsx";
 import "./index.css";
 
 function App() {
   const [ingredient, setIngredient] = useState("");
 
-  const handleIngredient = (e) => {
+  const handleIngredient = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setIngredient(e.target.value);
   };
 
@@ -30,5 +30,8 @@ function App() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
