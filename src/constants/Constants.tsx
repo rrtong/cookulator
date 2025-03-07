@@ -49,7 +49,6 @@ const UNIT_TO_UNIT = (unit: number) => unit;
 const C_TO_TBSP = (c: number) => c * 16;
 const C_TO_TSP = (c: number) => c * 48;
 const LB_TO_OZ = (lb: number) => lb * 16;
-const LB_TO_G = (lb: number) => lb * 453.5936;
 const OZ_TO_LB = (oz: number) => oz * 0.0625;
 const TBSP_TO_C = (tbsp: number) => tbsp * 0.0625;
 const TBSP_TO_TSP = (tbsp: number) => tbsp * 3;
