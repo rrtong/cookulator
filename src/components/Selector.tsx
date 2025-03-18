@@ -1,6 +1,6 @@
-import { useState } from "react";
 import SelectorButton from "./SelectorButton";
 import "../styles/Selector.css";
+import butter from "../assets/buttonImages/butter.png";
 
 interface SelectorProps {
   setIngredient: (name: string) => void;
@@ -20,18 +20,17 @@ const Selector: React.FC<SelectorProps> = ({
           Switch Ingredient
         </div>
       )}
-      {/* <select value={ingredient} onChange={handleIngredient}>
-        {dropdown}
-      </select> */}
       {showSelector && (
-        <div>
+        <div className="selector-buttons">
           <SelectorButton
             name={"butter"}
+            image={butter}
             setIngredient={setIngredient}
             setShowSelector={setShowSelector}
           />
           <SelectorButton
             name={"salt"}
+            image={butter}
             setIngredient={setIngredient}
             setShowSelector={setShowSelector}
           />
