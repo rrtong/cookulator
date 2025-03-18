@@ -13,3 +13,27 @@
 .selector select:hover {
   background-color: #eee
 }
+
+.selector-switch {
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  background-color: lightskyblue;
+  color: white;
+  border: 1px black solid;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.selector-switch:hover {
+  background-color: lightblue
+}
+
+.selector-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}

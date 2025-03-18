@@ -7,20 +7,17 @@ import "./index.css";
 
 function App() {
   const [ingredient, setIngredient] = useState("");
-
-  const handleIngredient = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setIngredient(e.target.value);
-  };
+  const [showSelector, setShowSelector] = useState(true);
 
   return (
     <div className="app">
       <h1>Cookulator</h1>
       <Selector
-        ingredient={ingredient}
-        handleIngredient={handleIngredient}
-        dropdown={DROPDOWN["SELECTOR"]}
+        setIngredient={setIngredient}
+        showSelector={showSelector}
+        setShowSelector={setShowSelector}
       />
-      {ingredient && (
+      {ingredient && !showSelector && (
         <Calculator
           dropdown={DROPDOWN[ingredient.toUpperCase()]}
           convert={CONVERT[ingredient.toUpperCase()]}

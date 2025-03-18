@@ -1,22 +1,41 @@
-import { ReactNode } from "react";
+import SelectorButton from "./SelectorButton";
 import "../styles/Selector.css";
+import butter from "../assets/buttonImages/butter.png";
 
 interface SelectorProps {
-  ingredient: string;
-  handleIngredient: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  dropdown: ReactNode;
+  setIngredient: (name: string) => void;
+  showSelector: boolean;
+  setShowSelector: (bool: boolean) => void;
 }
 
 const Selector: React.FC<SelectorProps> = ({
-  ingredient,
-  handleIngredient,
-  dropdown,
+  setIngredient,
+  showSelector,
+  setShowSelector,
 }) => {
   return (
     <div className="selector">
-      <select value={ingredient} onChange={handleIngredient}>
-        {dropdown}
-      </select>
+      {!showSelector && (
+        <div className="selector-switch" onClick={() => setShowSelector(true)}>
+          Switch Ingredient
+        </div>
+      )}
+      {showSelector && (
+        <div className="selector-buttons">
+          <SelectorButton
+            name={"butter"}
+            image={butter}
+            setIngredient={setIngredient}
+            setShowSelector={setShowSelector}
+          />
+          <SelectorButton
+            name={"salt"}
+            image={butter}
+            setIngredient={setIngredient}
+            setShowSelector={setShowSelector}
+          />
+        </div>
+      )}
     </div>
   );
 };
