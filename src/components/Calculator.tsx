@@ -8,6 +8,8 @@ interface CalculatorProps {
 }
 
 const Calculator: React.FC<CalculatorProps> = ({ dropdown, convert }) => {
+  // TODO: flour types
+  // const [ingredientType, setIngredientType] = useState("");
   const [fromValue, setFromValue] = useState(0);
   const [fromUnit, setFromUnit] = useState("");
   const [toValue, setToValue] = useState(0);

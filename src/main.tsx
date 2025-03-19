@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import Selector from "./components/Selector.tsx";
 import Calculator from "./components/Calculator.tsx";
 import { DROPDOWN, CONVERT } from "./constants/Constants.tsx";
+import cookulator from "../public/cookulator.png";
 import "./index.css";
 
 function App() {
@@ -11,7 +12,10 @@ function App() {
 
   return (
     <div className="app">
-      <h1>Cookulator</h1>
+      <div className="title">
+        <img className="logo" src={cookulator} />
+        <h1>Cookulator</h1>
+      </div>
       <Selector
         setIngredient={setIngredient}
         showSelector={showSelector}

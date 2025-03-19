@@ -8,3 +8,21 @@ body, html {
 .app {
   text-align: center;
 }
+
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.logo {
+  width: 100px;
+  filter: drop-shadow(10px 7px 4px gray);
+}
+
+h1 {
+  position: absolute;
+  display: inline-block;
+  text-shadow: 2px 2px white;
+}

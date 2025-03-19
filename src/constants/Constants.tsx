@@ -1,13 +1,8 @@
 import { JSX } from "react";
 
+export const INGREDIENTS: Array<string> = ["butter", "salt"];
+
 export const DROPDOWN: Record<string, JSX.Element> = {
-  SELECTOR: (
-    <>
-      <option value="">What ingredient?</option>
-      <option value="butter">butter</option>
-      <option value="salt">salt</option>
-    </>
-  ),
   BUTTER: (
     <>
       <option value="sticksofbutter">Sticks of Butter</option>

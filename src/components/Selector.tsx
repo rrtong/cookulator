@@ -1,6 +1,7 @@
 import SelectorButton from "./SelectorButton";
 import "../styles/Selector.css";
 import butter from "../assets/buttonImages/butter.png";
+import { INGREDIENTS } from "../constants/Constants";
 
 interface SelectorProps {
   setIngredient: (name: string) => void;
@@ -13,6 +14,18 @@ const Selector: React.FC<SelectorProps> = ({
   showSelector,
   setShowSelector,
 }) => {
+  const selectorButtons = [];
+  for (let ingredient of INGREDIENTS) {
+    selectorButtons.push(
+      <SelectorButton
+        name={ingredient}
+        image={butter}
+        setIngredient={setIngredient}
+        setShowSelector={setShowSelector}
+      />
+    );
+  }
+
   return (
     <div className="selector">
       {!showSelector && (
@@ -21,20 +34,7 @@ const Selector: React.FC<SelectorProps> = ({
         </div>
       )}
       {showSelector && (
-        <div className="selector-buttons">
-          <SelectorButton
-            name={"butter"}
-            image={butter}
-            setIngredient={setIngredient}
-            setShowSelector={setShowSelector}
-          />
-          <SelectorButton
-            name={"salt"}
-            image={butter}
-            setIngredient={setIngredient}
-            setShowSelector={setShowSelector}
-          />
-        </div>
+        <div className="selector-buttons">{selectorButtons}</div>
       )}
     </div>
   );
