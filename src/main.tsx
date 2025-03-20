@@ -2,7 +2,7 @@ import { StrictMode, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Selector from "./components/Selector.tsx";
 import Calculator from "./components/Calculator.tsx";
-import { DROPDOWN, CONVERT } from "./constants/Constants.tsx";
+import { CONVERT, DROPDOWN, DROPDOWN_TYPE } from "./constants/Constants.tsx";
 import cookulator from "../public/cookulator.png";
 import "./index.css";
 
@@ -23,8 +23,10 @@ function App() {
       />
       {ingredient && !showSelector && (
         <Calculator
-          dropdown={DROPDOWN[ingredient.toUpperCase()]}
+          ingredient={ingredient}
           convert={CONVERT[ingredient.toUpperCase()]}
+          dropdown={DROPDOWN[ingredient.toUpperCase()]}
+          dropdownType={DROPDOWN_TYPE[ingredient.toUpperCase()]}
         />
       )}
     </div>

@@ -1,15 +1,21 @@
 import { useState, useEffect, JSX } from "react";
 import "../styles/Calculator.css";
-import { UnitConversions } from "../constants/Constants";
+import { ToUnitConversion, FromUnitConversion } from "../constants/Constants";
 
 interface CalculatorProps {
+  ingredient: string;
+  convert: Record<string, ToUnitConversion> | FromUnitConversion;
   dropdown: JSX.Element;
-  convert: Record<string, UnitConversions>;
+  dropdownType: JSX.Element;
 }
 
-const Calculator: React.FC<CalculatorProps> = ({ dropdown, convert }) => {
-  // TODO: flour types
-  // const [ingredientType, setIngredientType] = useState("");
+const Calculator: React.FC<CalculatorProps> = ({
+  ingredient,
+  convert,
+  dropdown,
+  dropdownType,
+}) => {
+  const [ingredientType, setIngredientType] = useState("");
   const [fromValue, setFromValue] = useState(0);
   const [fromUnit, setFromUnit] = useState("");
   const [toValue, setToValue] = useState(0);
@@ -21,6 +27,13 @@ const Calculator: React.FC<CalculatorProps> = ({ dropdown, convert }) => {
       setFromValue(Number(e.target.value));
     }
   };
+
+  // auto-select first ingredientType from dropdownType list
+  useEffect(() => {
+    if (dropdownType) {
+      setIngredientType(dropdownType.props.children[0].props.value);
+    }
+  }, [dropdownType]);
 
   // auto-select first two units from dropdown list
   useEffect(() => {
@@ -34,7 +47,11 @@ const Calculator: React.FC<CalculatorProps> = ({ dropdown, convert }) => {
   useEffect(() => {
     const handleToValue = () => {
       let convertCalc = convert[fromUnit][toUnit];
-      setToValue(convertCalc(fromValue));
+      if (typeof convertCalc === "function") {
+        setToValue(convertCalc(fromValue, ingredientType));
+      } else {
+        console.error("convertCalc is not a function");
+      }
     };
 
     if (fromValue) {
@@ -42,7 +59,11 @@ const Calculator: React.FC<CalculatorProps> = ({ dropdown, convert }) => {
     } else if (fromValue === 0 && fromUnit && toUnit) {
       handleToValue();
     }
-  }, [fromValue, fromUnit, toUnit]);
+  }, [ingredientType, fromValue, fromUnit, toUnit]);
+
+  const handleIngredientType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setIngredientType(e.target.value);
+  };
 
   const handleFromUnit = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFromUnit(e.target.value);
@@ -54,7 +75,20 @@ const Calculator: React.FC<CalculatorProps> = ({ dropdown, convert }) => {
 
   return (
     <div className="calculator">
+      {dropdownType && (
+        <div>
+          type of {ingredient}
+          <select
+            value={ingredientType}
+            onChange={handleIngredientType}
+            disabled
+          >
+            {dropdownType}
+          </select>
+        </div>
+      )}
       <div className="from">
+        converts from
         <input
           value={fromValue}
           onChange={handleFromValue}
@@ -65,8 +99,8 @@ const Calculator: React.FC<CalculatorProps> = ({ dropdown, convert }) => {
           {dropdown}
         </select>
       </div>
-      converts to
       <div className="to">
+        converts to
         <input value={toValue} disabled />
         <select value={toUnit} onChange={handleToUnit}>
           {dropdown}

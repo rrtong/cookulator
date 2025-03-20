@@ -1,6 +1,6 @@
 import { JSX } from "react";
 
-export const INGREDIENTS: Array<string> = ["butter", "salt"];
+export const INGREDIENTS: Array<string> = ["butter", "flour", "salt"];
 
 export const DROPDOWN: Record<string, JSX.Element> = {
   BUTTER: (
@@ -40,20 +40,75 @@ export const DROPDOWN: Record<string, JSX.Element> = {
   ),
 };
 
+export const DROPDOWN_TYPE: Record<string, JSX.Element> = {
+  FLOUR: (
+    <>
+      <option value="allpurposeflour">All-Purpose Flour</option>
+      <option value="wheatflour">Wheat Flour</option>
+      <option value="breadflour">Bread Flour</option>
+      <option value="type00flour">Type 00 Flour</option>
+      <option value="cakeflour">Cake/Pastry Flour</option>
+      <option value="ryeflour">Rye Flour</option>
+      <option value="plainflour">Plain Flour</option>
+      <option value="wholemealflour">Wholemeal Flour</option>
+    </>
+  ),
+  SUGAR: (
+    <>
+      <option value="granulatedsugar">Granulated Sugar</option>
+      <option value="brownsugar">Brown Sugar</option>
+      <option value="powderedsugar">Powdered/Confectioner's Sugar</option>
+      <option value="rawsugar">Raw Sugar</option>
+    </>
+  ),
+};
+
 const UNIT_TO_UNIT = (unit: number) => unit;
 const C_TO_TBSP = (c: number) => c * 16;
 const C_TO_TSP = (c: number) => c * 48;
 const LB_TO_OZ = (lb: number) => lb * 16;
 const OZ_TO_LB = (oz: number) => oz * 0.0625;
+const QT_TO_C = (qt: number) => qt * 4;
+const QT_TO_TBSP = (qt: number) => qt * 64;
+const QT_TO_TSP = (qt: number) => qt * 192;
 const TBSP_TO_C = (tbsp: number) => tbsp * 0.0625;
 const TBSP_TO_TSP = (tbsp: number) => tbsp * 3;
 const TSP_TO_C = (tsp: number) => tsp * 0.020833;
 const TSP_TO_TBSP = (tsp: number) => tsp / 3;
+const KG_TO_G = (kg: number) => kg * 1000;
+const G_TO_KG = (g: number) => g / 1000;
 
-export type ConversionFunction = (value: number) => number;
-export type UnitConversions = Record<string, ConversionFunction>;
-export type ConvertType = Record<string, Record<string, UnitConversions>>;
-export const CONVERT: ConvertType = {
+const FLOUR_C_TO_G = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour") {
+    return c * 125;
+  } else if (ingredientType === "wheatflour") {
+    return c * 120;
+  } else if (ingredientType === "breadflour") {
+    return c * 127;
+  } else if (ingredientType === "type00flour") {
+    return c * 127;
+  } else if (ingredientType === "cakeflour") {
+    return c * 100;
+  } else if (ingredientType === "ryeflour") {
+    return c * 102;
+  } else if (ingredientType === "plainflour") {
+    return c * 125;
+  } else if (ingredientType === "wholemealflour") {
+    return c * 120;
+  }
+  return 0;
+};
+
+export type ConversionFunction = (
+  value: number,
+  ingredientType?: string | undefined
+) => number;
+export type ToUnitConversion = Record<string, ConversionFunction>;
+export type FromUnitConversion = Record<
+  string,
+  Record<string, ToUnitConversion>
+>;
+export const CONVERT: FromUnitConversion = {
   BUTTER: {
     sticksofbutter: {
       sticksofbutter: UNIT_TO_UNIT,
@@ -146,6 +201,76 @@ export const CONVERT: ConvertType = {
       kilograms: (tsp: number) => tsp * 0.002604,
       ounces: (tsp: number) => tsp * 0.091858,
       pounds: (tsp: number) => tsp * 0.005741,
+    },
+    tablespoons: {
+      teaspoons: TBSP_TO_TSP,
+      tablespoons: UNIT_TO_UNIT,
+      cups: TBSP_TO_C,
+      quart: (tbsp: number) => tbsp * 0.015625,
+      gram: (tbsp: number) => tbsp * 7.8125,
+      kilograms: (tbsp: number) => tbsp * 0.007813,
+      ounces: (tbsp: number) => tbsp * 0.275578,
+      pounds: (tbsp: number) => tbsp * 0.017224,
+    },
+    cups: {
+      teaspoons: C_TO_TSP,
+      tablespoons: C_TO_TBSP,
+      cups: UNIT_TO_UNIT,
+      quarts: (c: number) => c / 4,
+      grams: FLOUR_C_TO_G,
+      kilograms: (c: number) => c / 8,
+      ounces: (c: number) => c * 4.409245,
+      pounds: (c: number) => c * 0.275578,
+    },
+    quarts: {
+      teaspoons: QT_TO_TSP,
+      tablespoons: QT_TO_TBSP,
+      cups: QT_TO_C,
+      quarts: UNIT_TO_UNIT,
+      grams: (qt: number) => qt * 500, // check ingredientType
+      kilograms: (qt: number) => qt / 2, // check ingredientType
+      ounces: (qt: number) => qt * 17.636981, // check ingredientType
+      pounds: (qt: number) => qt * 1.102311, // check ingredientType
+    },
+    grams: {
+      teaspoons: (g: number) => g * 0.384006,
+      tablespoons: (g: number) => g * 0.128,
+      cups: (g: number) => g / 125,
+      quarts: (g: number) => g / 500,
+      grams: UNIT_TO_UNIT,
+      kilograms: G_TO_KG,
+      ounces: (g: number) => g * 0.035274,
+      pounds: (g: number) => g * 0.002205,
+    },
+    kilograms: {
+      teaspoons: (kg: number) => kg * 384.006144,
+      tablespoons: (kg: number) => kg * 128,
+      cups: (kg: number) => kg * 8,
+      quarts: (kg: number) => kg * 2,
+      grams: KG_TO_G,
+      kilograms: UNIT_TO_UNIT,
+      ounces: (kg: number) => kg * 35.273962,
+      pounds: (kg: number) => kg * 2.204623,
+    },
+    ounces: {
+      teaspoons: (oz: number) => oz * 10.886391,
+      tablespoons: (oz: number) => oz * 3.628739,
+      cups: (oz: number) => oz * 0.226796,
+      quarts: (oz: number) => oz * 0.056699,
+      grams: (oz: number) => oz * 28.349523,
+      kilograms: (oz: number) => oz * 0.02835,
+      ounces: UNIT_TO_UNIT,
+      pounds: OZ_TO_LB,
+    },
+    pounds: {
+      teaspoons: (lb: number) => lb * 174.182257,
+      tablespoons: (lb: number) => lb * 58.059823,
+      cups: (lb: number) => lb * 3.628739,
+      quarts: (lb: number) => lb * 0.907185,
+      grams: (lb: number) => lb * 453.59237,
+      kilograms: (lb: number) => lb * 0.453592,
+      ounces: LB_TO_OZ,
+      pounds: UNIT_TO_UNIT,
     },
   },
   SALT: {
