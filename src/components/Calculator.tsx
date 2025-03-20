@@ -76,7 +76,7 @@ const Calculator: React.FC<CalculatorProps> = ({
   return (
     <div className="calculator">
       {dropdownType && (
-        <div>
+        <div className="ingredient-type">
           type of {ingredient}
           <select
             value={ingredientType}

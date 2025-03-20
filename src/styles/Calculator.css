@@ -3,6 +3,7 @@
   display: inline-block;
 }
 
+.ingredient-type,
 .from,
 .to {
   display: flex;
