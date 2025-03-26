@@ -78,11 +78,7 @@ const Calculator: React.FC<CalculatorProps> = ({
       {dropdownType && (
         <div className="ingredient-type">
           type of {ingredient}
-          <select
-            value={ingredientType}
-            onChange={handleIngredientType}
-            disabled
-          >
+          <select value={ingredientType} onChange={handleIngredientType}>
             {dropdownType}
           </select>
         </div>
