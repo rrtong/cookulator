@@ -78,25 +78,244 @@ const TSP_TO_TBSP = (tsp: number) => tsp / 3;
 const KG_TO_G = (kg: number) => kg * 1000;
 const G_TO_KG = (g: number) => g / 1000;
 
+const FLOUR_TSP_TO_G = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
+    return c * 2.604125;
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
+    return c * 2.49996;
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
+    return c * 2.645791;
+  } else if (ingredientType === "cakeflour") {
+    return c * 2.0833;
+  } else if (ingredientType === "ryeflour") {
+    return c * 2.124966;
+  }
+  return 0;
+};
+const FLOUR_TSP_TO_KG = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_G(c, ingredientType) / 1000;
+};
+const FLOUR_TSP_TO_OZ = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
+    return c * 0.091858;
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
+    return c * 0.088184;
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
+    return c * 0.093328;
+  } else if (ingredientType === "cakeflour") {
+    return c * 0.073486;
+  } else if (ingredientType === "ryeflour") {
+    return c * 0.074956;
+  }
+  return 0;
+};
+const FLOUR_TSP_TO_LB = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_OZ(c, ingredientType) / 16;
+};
+
+const FLOUR_TBSP_TO_G = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_G(c, ingredientType) * 3;
+};
+const FLOUR_TBSP_TO_KG = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_KG(c, ingredientType) * 3;
+};
+const FLOUR_TBSP_TO_OZ = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_OZ(c, ingredientType) * 3;
+};
+const FLOUR_TBSP_TO_LB = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_LB(c, ingredientType) * 3;
+};
+
 const FLOUR_C_TO_G = (c: number, ingredientType: string | undefined) => {
-  if (ingredientType === "allpurposeflour") {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
     return c * 125;
-  } else if (ingredientType === "wheatflour") {
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
     return c * 120;
-  } else if (ingredientType === "breadflour") {
-    return c * 127;
-  } else if (ingredientType === "type00flour") {
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
     return c * 127;
   } else if (ingredientType === "cakeflour") {
     return c * 100;
   } else if (ingredientType === "ryeflour") {
     return c * 102;
-  } else if (ingredientType === "plainflour") {
-    return c * 125;
-  } else if (ingredientType === "wholemealflour") {
-    return c * 120;
   }
   return 0;
+};
+const FLOUR_C_TO_KG = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_G(c, ingredientType) / 1000;
+};
+const FLOUR_C_TO_OZ = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
+    return c * 4.409245;
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
+    return c * 4.232875;
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
+    return c * 4.479793;
+  } else if (ingredientType === "cakeflour") {
+    return c * 3.527396;
+  } else if (ingredientType === "ryeflour") {
+    return c * 3.597944;
+  }
+  return 0;
+};
+const FLOUR_C_TO_LB = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_OZ(c, ingredientType) / 16;
+};
+
+const FLOUR_QT_TO_G = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_G(c, ingredientType) * 4;
+};
+const FLOUR_QT_TO_KG = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_KG(c, ingredientType) * 4;
+};
+const FLOUR_QT_TO_OZ = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_OZ(c, ingredientType) * 4;
+};
+const FLOUR_QT_TO_LB = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_LB(c, ingredientType) * 4;
+};
+
+const FLOUR_G_TO_TSP = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
+    return c * 0.384006;
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
+    return c * 0.400006;
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
+    return c * 0.377959;
+  } else if (ingredientType === "cakeflour") {
+    return c * 0.480008;
+  } else if (ingredientType === "ryeflour") {
+    return c * 0.470596;
+  }
+  return 0;
+};
+const FLOUR_G_TO_TBSP = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_TSP(c, ingredientType) / 3;
+};
+const FLOUR_G_TO_C = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
+    return c * 0.008;
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
+    return c * 0.008333;
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
+    return c * 0.007874;
+  } else if (ingredientType === "cakeflour") {
+    return c * 0.01;
+  } else if (ingredientType === "ryeflour") {
+    return c * 0.009804;
+  }
+  return 0;
+};
+const FLOUR_G_TO_QT = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_C(c, ingredientType) / 4;
+};
+
+const FLOUR_KG_TO_TSP = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_TSP(c, ingredientType) * 1000;
+};
+const FLOUR_KG_TO_TBSP = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_TBSP(c, ingredientType) * 1000;
+};
+const FLOUR_KG_TO_C = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_C(c, ingredientType) * 1000;
+};
+const FLOUR_KG_TO_QT = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_QT(c, ingredientType) * 1000;
+};
+
+const FLOUR_OZ_TO_TSP = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
+    return c * 10.886391;
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
+    return c * 11.339991;
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
+    return c * 10.714952;
+  } else if (ingredientType === "cakeflour") {
+    return c * 13.607989;
+  } else if (ingredientType === "ryeflour") {
+    return c * 10.886391;
+  }
+  return 0;
+};
+const FLOUR_OZ_TO_TBSP = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_TSP(c, ingredientType) / 3;
+};
+const FLOUR_OZ_TO_C = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
+    return c * 0.226796;
+  } else if (
+    ingredientType === "wheatflour" ||
+    ingredientType === "wholemealflour"
+  ) {
+    return c * 0.236246;
+  } else if (
+    ingredientType === "breadflour" ||
+    ingredientType === "type00flour"
+  ) {
+    return c * 0.223224;
+  } else if (ingredientType === "cakeflour") {
+    return c * 0.283495;
+  } else if (ingredientType === "ryeflour") {
+    return c * 0.277936;
+  }
+  return 0;
+};
+const FLOUR_OZ_TO_QT = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_C(c, ingredientType) / 4;
+};
+
+const FLOUR_LB_TO_TSP = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_TSP(c, ingredientType) * 16;
+};
+const FLOUR_LB_TO_TBSP = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_TBSP(c, ingredientType) * 16;
+};
+const FLOUR_LB_TO_C = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_C(c, ingredientType) * 16;
+};
+const FLOUR_LB_TO_QT = (c: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_QT(c, ingredientType) * 16;
 };
 
 export type ConversionFunction = (
@@ -197,76 +416,76 @@ export const CONVERT: FromUnitConversion = {
       tablespoons: TSP_TO_TBSP,
       cups: TSP_TO_C,
       quarts: (tsp: number) => tsp * 0.005208,
-      grams: (tsp: number) => tsp * 2.604125,
-      kilograms: (tsp: number) => tsp * 0.002604,
-      ounces: (tsp: number) => tsp * 0.091858,
-      pounds: (tsp: number) => tsp * 0.005741,
+      grams: FLOUR_TSP_TO_G, // check ingredientType
+      kilograms: FLOUR_TSP_TO_KG, // check ingredientType
+      ounces: FLOUR_TSP_TO_OZ, // check ingredientType
+      pounds: FLOUR_TSP_TO_LB, // check ingredientType
     },
     tablespoons: {
       teaspoons: TBSP_TO_TSP,
       tablespoons: UNIT_TO_UNIT,
       cups: TBSP_TO_C,
       quart: (tbsp: number) => tbsp * 0.015625,
-      gram: (tbsp: number) => tbsp * 7.8125,
-      kilograms: (tbsp: number) => tbsp * 0.007813,
-      ounces: (tbsp: number) => tbsp * 0.275578,
-      pounds: (tbsp: number) => tbsp * 0.017224,
+      gram: FLOUR_TBSP_TO_G, // check ingredientType
+      kilograms: FLOUR_TBSP_TO_KG, // check ingredientType
+      ounces: FLOUR_TBSP_TO_OZ, // check ingredientType
+      pounds: FLOUR_TBSP_TO_LB, // check ingredientType
     },
     cups: {
       teaspoons: C_TO_TSP,
       tablespoons: C_TO_TBSP,
       cups: UNIT_TO_UNIT,
       quarts: (c: number) => c / 4,
-      grams: FLOUR_C_TO_G,
-      kilograms: (c: number) => c / 8,
-      ounces: (c: number) => c * 4.409245,
-      pounds: (c: number) => c * 0.275578,
+      grams: FLOUR_C_TO_G, // check ingredientType
+      kilograms: FLOUR_C_TO_KG, // check ingredientType
+      ounces: FLOUR_C_TO_OZ, // check ingredientType
+      pounds: FLOUR_C_TO_LB, // check ingredientType
     },
     quarts: {
       teaspoons: QT_TO_TSP,
       tablespoons: QT_TO_TBSP,
       cups: QT_TO_C,
       quarts: UNIT_TO_UNIT,
-      grams: (qt: number) => qt * 500, // check ingredientType
-      kilograms: (qt: number) => qt / 2, // check ingredientType
-      ounces: (qt: number) => qt * 17.636981, // check ingredientType
-      pounds: (qt: number) => qt * 1.102311, // check ingredientType
+      grams: FLOUR_QT_TO_G, // check ingredientType
+      kilograms: FLOUR_QT_TO_KG, // check ingredientType
+      ounces: FLOUR_QT_TO_OZ, // check ingredientType
+      pounds: FLOUR_QT_TO_LB, // check ingredientType
     },
     grams: {
-      teaspoons: (g: number) => g * 0.384006,
-      tablespoons: (g: number) => g * 0.128,
-      cups: (g: number) => g / 125,
-      quarts: (g: number) => g / 500,
+      teaspoons: FLOUR_G_TO_TSP, // check ingredientType
+      tablespoons: FLOUR_G_TO_TBSP, // check ingredientType
+      cups: FLOUR_G_TO_C, // check ingredientType
+      quarts: FLOUR_G_TO_QT, // check ingredientType
       grams: UNIT_TO_UNIT,
       kilograms: G_TO_KG,
       ounces: (g: number) => g * 0.035274,
       pounds: (g: number) => g * 0.002205,
     },
     kilograms: {
-      teaspoons: (kg: number) => kg * 384.006144,
-      tablespoons: (kg: number) => kg * 128,
-      cups: (kg: number) => kg * 8,
-      quarts: (kg: number) => kg * 2,
+      teaspoons: FLOUR_KG_TO_TSP, // check ingredientType
+      tablespoons: FLOUR_KG_TO_TBSP, // check ingredientType
+      cups: FLOUR_KG_TO_C, // check ingredientType
+      quarts: FLOUR_KG_TO_QT, // check ingredientType
       grams: KG_TO_G,
       kilograms: UNIT_TO_UNIT,
       ounces: (kg: number) => kg * 35.273962,
       pounds: (kg: number) => kg * 2.204623,
     },
     ounces: {
-      teaspoons: (oz: number) => oz * 10.886391,
-      tablespoons: (oz: number) => oz * 3.628739,
-      cups: (oz: number) => oz * 0.226796,
-      quarts: (oz: number) => oz * 0.056699,
+      teaspoons: FLOUR_KG_TO_TSP, // check ingredientType
+      tablespoons: FLOUR_KG_TO_TBSP, // check ingredientType
+      cups: FLOUR_KG_TO_C, // check ingredientType
+      quarts: FLOUR_KG_TO_QT, // check ingredientType
       grams: (oz: number) => oz * 28.349523,
       kilograms: (oz: number) => oz * 0.02835,
       ounces: UNIT_TO_UNIT,
       pounds: OZ_TO_LB,
     },
     pounds: {
-      teaspoons: (lb: number) => lb * 174.182257,
-      tablespoons: (lb: number) => lb * 58.059823,
-      cups: (lb: number) => lb * 3.628739,
-      quarts: (lb: number) => lb * 0.907185,
+      teaspoons: FLOUR_LB_TO_TSP, // check ingredientType
+      tablespoons: FLOUR_LB_TO_TBSP, // check ingredientType
+      cups: FLOUR_LB_TO_C, // check ingredientType
+      quarts: FLOUR_LB_TO_QT, // check ingredientType
       grams: (lb: number) => lb * 453.59237,
       kilograms: (lb: number) => lb * 0.453592,
       ounces: LB_TO_OZ,
