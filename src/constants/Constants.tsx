@@ -17,8 +17,8 @@ export const DROPDOWN: Record<string, JSX.Element> = {
   ),
   FLOUR: (
     <>
-      <option value="tablespoons">Tablespoons</option>
       <option value="teaspoons">Teaspoons</option>
+      <option value="tablespoons">Tablespoons</option>
       <option value="cups">Cups</option>
       <option value="quarts">Quarts</option>
       <option value="grams">Grams</option>
