@@ -1,6 +1,6 @@
 import { JSX } from "react";
 
-export const INGREDIENTS: Array<string> = ["butter", "flour", "salt"];
+export const INGREDIENTS: Array<string> = ["butter", "flour", "salt", "sugar"];
 
 export const DROPDOWN: Record<string, JSX.Element> = {
   BUTTER: (
@@ -36,6 +36,18 @@ export const DROPDOWN: Record<string, JSX.Element> = {
       <option value="tablespoons">Tablespoons</option>
       <option value="cups">Cups</option>
       <option value="grams">Grams</option>
+    </>
+  ),
+  SUGAR: (
+    <>
+      <option value="teaspoons">Teaspoons</option>
+      <option value="tablespoons">Tablespoons</option>
+      <option value="cups">Cups</option>
+      <option value="quarts">Quarts</option>
+      <option value="grams">Grams</option>
+      <option value="kilograms">Kilograms</option>
+      <option value="ounces">Ounces</option>
+      <option value="pounds">Pounds</option>
     </>
   ),
 };
@@ -78,64 +90,64 @@ const TSP_TO_TBSP = (tsp: number) => tsp / 3;
 const KG_TO_G = (kg: number) => kg * 1000;
 const G_TO_KG = (g: number) => g / 1000;
 
-const FLOUR_TSP_TO_G = (c: number, ingredientType: string | undefined) => {
+const FLOUR_TSP_TO_G = (tsp: number, ingredientType: string | undefined) => {
   if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
-    return c * 2.604125;
+    return tsp * 2.604125;
   } else if (
     ingredientType === "wheatflour" ||
     ingredientType === "wholemealflour"
   ) {
-    return c * 2.49996;
+    return tsp * 2.49996;
   } else if (
     ingredientType === "breadflour" ||
     ingredientType === "type00flour"
   ) {
-    return c * 2.645791;
+    return tsp * 2.645791;
   } else if (ingredientType === "cakeflour") {
-    return c * 2.0833;
+    return tsp * 2.0833;
   } else if (ingredientType === "ryeflour") {
-    return c * 2.124966;
+    return tsp * 2.124966;
   }
   return 0;
 };
-const FLOUR_TSP_TO_KG = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_TSP_TO_G(c, ingredientType) / 1000;
+const FLOUR_TSP_TO_KG = (tsp: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_G(tsp, ingredientType) / 1000;
 };
-const FLOUR_TSP_TO_OZ = (c: number, ingredientType: string | undefined) => {
+const FLOUR_TSP_TO_OZ = (tsp: number, ingredientType: string | undefined) => {
   if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
-    return c * 0.091858;
+    return tsp * 0.091858;
   } else if (
     ingredientType === "wheatflour" ||
     ingredientType === "wholemealflour"
   ) {
-    return c * 0.088184;
+    return tsp * 0.088184;
   } else if (
     ingredientType === "breadflour" ||
     ingredientType === "type00flour"
   ) {
-    return c * 0.093328;
+    return tsp * 0.093328;
   } else if (ingredientType === "cakeflour") {
-    return c * 0.073486;
+    return tsp * 0.073486;
   } else if (ingredientType === "ryeflour") {
-    return c * 0.074956;
+    return tsp * 0.074956;
   }
   return 0;
 };
-const FLOUR_TSP_TO_LB = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_TSP_TO_OZ(c, ingredientType) / 16;
+const FLOUR_TSP_TO_LB = (tsp: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_OZ(tsp, ingredientType) / 16;
 };
 
-const FLOUR_TBSP_TO_G = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_TSP_TO_G(c, ingredientType) * 3;
+const FLOUR_TBSP_TO_G = (tbsp: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_G(tbsp, ingredientType) * 3;
 };
-const FLOUR_TBSP_TO_KG = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_TSP_TO_KG(c, ingredientType) * 3;
+const FLOUR_TBSP_TO_KG = (tbsp: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_KG(tbsp, ingredientType) * 3;
 };
-const FLOUR_TBSP_TO_OZ = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_TSP_TO_OZ(c, ingredientType) * 3;
+const FLOUR_TBSP_TO_OZ = (tbsp: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_OZ(tbsp, ingredientType) * 3;
 };
-const FLOUR_TBSP_TO_LB = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_TSP_TO_LB(c, ingredientType) * 3;
+const FLOUR_TBSP_TO_LB = (tbsp: number, ingredientType: string | undefined) => {
+  return FLOUR_TSP_TO_LB(tbsp, ingredientType) * 3;
 };
 
 const FLOUR_C_TO_G = (c: number, ingredientType: string | undefined) => {
@@ -185,137 +197,297 @@ const FLOUR_C_TO_LB = (c: number, ingredientType: string | undefined) => {
   return FLOUR_C_TO_OZ(c, ingredientType) / 16;
 };
 
-const FLOUR_QT_TO_G = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_C_TO_G(c, ingredientType) * 4;
+const FLOUR_QT_TO_G = (qt: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_G(qt, ingredientType) * 4;
 };
-const FLOUR_QT_TO_KG = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_C_TO_KG(c, ingredientType) * 4;
+const FLOUR_QT_TO_KG = (qt: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_KG(qt, ingredientType) * 4;
 };
-const FLOUR_QT_TO_OZ = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_C_TO_OZ(c, ingredientType) * 4;
+const FLOUR_QT_TO_OZ = (qt: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_OZ(qt, ingredientType) * 4;
 };
-const FLOUR_QT_TO_LB = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_C_TO_LB(c, ingredientType) * 4;
+const FLOUR_QT_TO_LB = (qt: number, ingredientType: string | undefined) => {
+  return FLOUR_C_TO_LB(qt, ingredientType) * 4;
 };
 
-const FLOUR_G_TO_TSP = (c: number, ingredientType: string | undefined) => {
+const FLOUR_G_TO_TSP = (g: number, ingredientType: string | undefined) => {
   if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
-    return c * 0.384006;
+    return g * 0.384006;
   } else if (
     ingredientType === "wheatflour" ||
     ingredientType === "wholemealflour"
   ) {
-    return c * 0.400006;
+    return g * 0.400006;
   } else if (
     ingredientType === "breadflour" ||
     ingredientType === "type00flour"
   ) {
-    return c * 0.377959;
+    return g * 0.377959;
   } else if (ingredientType === "cakeflour") {
-    return c * 0.480008;
+    return g * 0.480008;
   } else if (ingredientType === "ryeflour") {
-    return c * 0.470596;
+    return g * 0.470596;
   }
   return 0;
 };
-const FLOUR_G_TO_TBSP = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_G_TO_TSP(c, ingredientType) / 3;
+const FLOUR_G_TO_TBSP = (g: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_TSP(g, ingredientType) / 3;
 };
-const FLOUR_G_TO_C = (c: number, ingredientType: string | undefined) => {
+const FLOUR_G_TO_C = (g: number, ingredientType: string | undefined) => {
   if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
-    return c * 0.008;
+    return g * 0.008;
   } else if (
     ingredientType === "wheatflour" ||
     ingredientType === "wholemealflour"
   ) {
-    return c * 0.008333;
+    return g * 0.008333;
   } else if (
     ingredientType === "breadflour" ||
     ingredientType === "type00flour"
   ) {
-    return c * 0.007874;
+    return g * 0.007874;
   } else if (ingredientType === "cakeflour") {
-    return c * 0.01;
+    return g * 0.01;
   } else if (ingredientType === "ryeflour") {
-    return c * 0.009804;
+    return g * 0.009804;
   }
   return 0;
 };
-const FLOUR_G_TO_QT = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_G_TO_C(c, ingredientType) / 4;
+const FLOUR_G_TO_QT = (g: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_C(g, ingredientType) / 4;
 };
 
-const FLOUR_KG_TO_TSP = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_G_TO_TSP(c, ingredientType) * 1000;
+const FLOUR_KG_TO_TSP = (kg: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_TSP(kg, ingredientType) * 1000;
 };
-const FLOUR_KG_TO_TBSP = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_G_TO_TBSP(c, ingredientType) * 1000;
+const FLOUR_KG_TO_TBSP = (kg: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_TBSP(kg, ingredientType) * 1000;
 };
-const FLOUR_KG_TO_C = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_G_TO_C(c, ingredientType) * 1000;
+const FLOUR_KG_TO_C = (kg: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_C(kg, ingredientType) * 1000;
 };
-const FLOUR_KG_TO_QT = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_G_TO_QT(c, ingredientType) * 1000;
+const FLOUR_KG_TO_QT = (kg: number, ingredientType: string | undefined) => {
+  return FLOUR_G_TO_QT(kg, ingredientType) * 1000;
 };
 
-const FLOUR_OZ_TO_TSP = (c: number, ingredientType: string | undefined) => {
+const FLOUR_OZ_TO_TSP = (oz: number, ingredientType: string | undefined) => {
   if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
-    return c * 10.886391;
+    return oz * 10.886391;
   } else if (
     ingredientType === "wheatflour" ||
     ingredientType === "wholemealflour"
   ) {
-    return c * 11.339991;
+    return oz * 11.339991;
   } else if (
     ingredientType === "breadflour" ||
     ingredientType === "type00flour"
   ) {
-    return c * 10.714952;
+    return oz * 10.714952;
   } else if (ingredientType === "cakeflour") {
-    return c * 13.607989;
+    return oz * 13.607989;
   } else if (ingredientType === "ryeflour") {
-    return c * 10.886391;
+    return oz * 10.886391;
   }
   return 0;
 };
-const FLOUR_OZ_TO_TBSP = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_OZ_TO_TSP(c, ingredientType) / 3;
+const FLOUR_OZ_TO_TBSP = (oz: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_TSP(oz, ingredientType) / 3;
 };
-const FLOUR_OZ_TO_C = (c: number, ingredientType: string | undefined) => {
+const FLOUR_OZ_TO_C = (oz: number, ingredientType: string | undefined) => {
   if (ingredientType === "allpurposeflour" || ingredientType === "plainflour") {
-    return c * 0.226796;
+    return oz * 0.226796;
   } else if (
     ingredientType === "wheatflour" ||
     ingredientType === "wholemealflour"
   ) {
-    return c * 0.236246;
+    return oz * 0.236246;
   } else if (
     ingredientType === "breadflour" ||
     ingredientType === "type00flour"
   ) {
-    return c * 0.223224;
+    return oz * 0.223224;
   } else if (ingredientType === "cakeflour") {
-    return c * 0.283495;
+    return oz * 0.283495;
   } else if (ingredientType === "ryeflour") {
-    return c * 0.277936;
+    return oz * 0.277936;
   }
   return 0;
 };
-const FLOUR_OZ_TO_QT = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_OZ_TO_C(c, ingredientType) / 4;
+const FLOUR_OZ_TO_QT = (oz: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_C(oz, ingredientType) / 4;
 };
 
-const FLOUR_LB_TO_TSP = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_OZ_TO_TSP(c, ingredientType) * 16;
+const FLOUR_LB_TO_TSP = (lb: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_TSP(lb, ingredientType) * 16;
 };
-const FLOUR_LB_TO_TBSP = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_OZ_TO_TBSP(c, ingredientType) * 16;
+const FLOUR_LB_TO_TBSP = (lb: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_TBSP(lb, ingredientType) * 16;
 };
-const FLOUR_LB_TO_C = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_OZ_TO_C(c, ingredientType) * 16;
+const FLOUR_LB_TO_C = (lb: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_C(lb, ingredientType) * 16;
 };
-const FLOUR_LB_TO_QT = (c: number, ingredientType: string | undefined) => {
-  return FLOUR_OZ_TO_QT(c, ingredientType) * 16;
+const FLOUR_LB_TO_QT = (lb: number, ingredientType: string | undefined) => {
+  return FLOUR_OZ_TO_QT(lb, ingredientType) * 16;
+};
+
+const SUGAR_TSP_TO_G = (tsp: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return tsp * 4.166667;
+  } else if (ingredientType === "powderedsugar") {
+    return tsp * 2.604167;
+  } else if (ingredientType === "rawsugar") {
+    return tsp * 5.208334;
+  }
+  return 0;
+};
+const SUGAR_TSP_TO_KG = (tsp: number, ingredientType: string | undefined) => {
+  return SUGAR_TSP_TO_G(tsp, ingredientType) / 1000;
+};
+const SUGAR_TSP_TO_OZ = (tsp: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return tsp * 0.146975;
+  } else if (ingredientType === "powderedsugar") {
+    return tsp * 0.091859;
+  } else if (ingredientType === "rawsugar") {
+    return tsp * 0.183719;
+  }
+  return 0;
+};
+const SUGAR_TSP_TO_LB = (tsp: number, ingredientType: string | undefined) => {
+  return SUGAR_TSP_TO_OZ(tsp, ingredientType) / 16;
+};
+
+const SUGAR_TBSP_TO_G = (tbsp: number, ingredientType: string | undefined) => {
+  return SUGAR_TSP_TO_G(tbsp, ingredientType) * 3;
+};
+const SUGAR_TBSP_TO_KG = (tbsp: number, ingredientType: string | undefined) => {
+  return SUGAR_TSP_TO_KG(tbsp, ingredientType) * 3;
+};
+const SUGAR_TBSP_TO_OZ = (tbsp: number, ingredientType: string | undefined) => {
+  return SUGAR_TSP_TO_OZ(tbsp, ingredientType) * 3;
+};
+const SUGAR_TBSP_TO_LB = (tbsp: number, ingredientType: string | undefined) => {
+  return SUGAR_TSP_TO_LB(tbsp, ingredientType) * 3;
+};
+
+const SUGAR_C_TO_G = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return c * 200;
+  } else if (ingredientType === "powderedsugar") {
+    return c * 125;
+  } else if (ingredientType === "rawsugar") {
+    return c * 250;
+  }
+  return 0;
+};
+const SUGAR_C_TO_KG = (c: number, ingredientType: string | undefined) => {
+  return SUGAR_C_TO_G(c, ingredientType) / 1000;
+};
+const SUGAR_C_TO_OZ = (c: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return c * 7.054792;
+  } else if (ingredientType === "powderedsugar") {
+    return c * 4.409245;
+  } else if (ingredientType === "rawsugar") {
+    return c * 8.81849;
+  }
+  return 0;
+};
+const SUGAR_C_TO_LB = (c: number, ingredientType: string | undefined) => {
+  return SUGAR_C_TO_OZ(c, ingredientType) / 16;
+};
+
+const SUGAR_QT_TO_G = (qt: number, ingredientType: string | undefined) => {
+  return SUGAR_C_TO_G(qt, ingredientType) * 4;
+};
+const SUGAR_QT_TO_KG = (qt: number, ingredientType: string | undefined) => {
+  return SUGAR_C_TO_KG(qt, ingredientType) * 4;
+};
+const SUGAR_QT_TO_OZ = (qt: number, ingredientType: string | undefined) => {
+  return SUGAR_C_TO_OZ(qt, ingredientType) * 4;
+};
+const SUGAR_QT_TO_LB = (qt: number, ingredientType: string | undefined) => {
+  return SUGAR_C_TO_LB(qt, ingredientType) * 4;
+};
+
+const SUGAR_G_TO_TSP = (g: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return g * 0.24;
+  } else if (ingredientType === "powderedsugar") {
+    return g * 0.384;
+  } else if (ingredientType === "rawsugar") {
+    return g * 0.192;
+  }
+  return 0;
+};
+const SUGAR_G_TO_TBSP = (g: number, ingredientType: string | undefined) => {
+  return SUGAR_G_TO_TSP(g, ingredientType) / 3;
+};
+const SUGAR_G_TO_C = (g: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return g * 0.005;
+  } else if (ingredientType === "powderedsugar") {
+    return g * 0.008;
+  } else if (ingredientType === "rawsugar") {
+    return g * 0.004;
+  }
+  return 0;
+};
+const SUGAR_G_TO_QT = (g: number, ingredientType: string | undefined) => {
+  return SUGAR_G_TO_C(g, ingredientType) / 4;
+};
+
+const SUGAR_KG_TO_TSP = (kg: number, ingredientType: string | undefined) => {
+  return SUGAR_G_TO_TSP(kg, ingredientType) * 1000;
+};
+const SUGAR_KG_TO_TBSP = (kg: number, ingredientType: string | undefined) => {
+  return SUGAR_G_TO_TBSP(kg, ingredientType) * 1000;
+};
+const SUGAR_KG_TO_C = (kg: number, ingredientType: string | undefined) => {
+  return SUGAR_G_TO_C(kg, ingredientType) * 1000;
+};
+const SUGAR_KG_TO_QT = (kg: number, ingredientType: string | undefined) => {
+  return SUGAR_G_TO_QT(kg, ingredientType) * 1000;
+};
+
+const SUGAR_OZ_TO_TSP = (oz: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return oz * 6.803886;
+  } else if (ingredientType === "powderedsugar") {
+    return oz * 10.886218;
+  } else if (ingredientType === "rawsugar") {
+    return oz * 5.443109;
+  }
+  return 0;
+};
+const SUGAR_OZ_TO_TBSP = (oz: number, ingredientType: string | undefined) => {
+  return SUGAR_OZ_TO_TSP(oz, ingredientType) / 3;
+};
+const SUGAR_OZ_TO_C = (oz: number, ingredientType: string | undefined) => {
+  if (ingredientType === "granulatedsugar" || ingredientType === "brownsugar") {
+    return oz * 0.141748;
+  } else if (ingredientType === "powderedsugar") {
+    return oz * 0.226797;
+  } else if (ingredientType === "rawsugar") {
+    return oz * 0.113398;
+  }
+  return 0;
+};
+const SUGAR_OZ_TO_QT = (oz: number, ingredientType: string | undefined) => {
+  return SUGAR_OZ_TO_C(oz, ingredientType) / 4;
+};
+
+const SUGAR_LB_TO_TSP = (lb: number, ingredientType: string | undefined) => {
+  return SUGAR_OZ_TO_TSP(lb, ingredientType) * 16;
+};
+const SUGAR_LB_TO_TBSP = (lb: number, ingredientType: string | undefined) => {
+  return SUGAR_OZ_TO_TBSP(lb, ingredientType) * 16;
+};
+const SUGAR_LB_TO_C = (lb: number, ingredientType: string | undefined) => {
+  return SUGAR_OZ_TO_C(lb, ingredientType) * 16;
+};
+const SUGAR_LB_TO_QT = (lb: number, ingredientType: string | undefined) => {
+  return SUGAR_OZ_TO_QT(lb, ingredientType) * 16;
 };
 
 export type ConversionFunction = (
@@ -555,6 +727,88 @@ export const CONVERT: FromUnitConversion = {
       tablespoons: (g: number) => g * 0.058582,
       cups: (g: number) => g * 0.003661,
       grams: UNIT_TO_UNIT,
+    },
+  },
+  SUGAR: {
+    teaspoons: {
+      teaspoons: UNIT_TO_UNIT,
+      tablespoons: TSP_TO_TBSP,
+      cups: TSP_TO_C,
+      quarts: (tsp: number) => tsp * 0.005208,
+      grams: SUGAR_TSP_TO_G, // check ingredientType
+      kilograms: SUGAR_TSP_TO_KG, // check ingredientType
+      ounces: SUGAR_TSP_TO_OZ, // check ingredientType
+      pounds: SUGAR_TSP_TO_LB, // check ingredientType
+    },
+    tablespoons: {
+      teaspoons: TBSP_TO_TSP,
+      tablespoons: UNIT_TO_UNIT,
+      cups: TBSP_TO_C,
+      quart: (tbsp: number) => tbsp * 0.015625,
+      gram: SUGAR_TBSP_TO_G, // check ingredientType
+      kilograms: SUGAR_TBSP_TO_KG, // check ingredientType
+      ounces: SUGAR_TBSP_TO_OZ, // check ingredientType
+      pounds: SUGAR_TBSP_TO_LB, // check ingredientType
+    },
+    cups: {
+      teaspoons: C_TO_TSP,
+      tablespoons: C_TO_TBSP,
+      cups: UNIT_TO_UNIT,
+      quarts: (c: number) => c / 4,
+      grams: SUGAR_C_TO_G, // check ingredientType
+      kilograms: SUGAR_C_TO_KG, // check ingredientType
+      ounces: SUGAR_C_TO_OZ, // check ingredientType
+      pounds: SUGAR_C_TO_LB, // check ingredientType
+    },
+    quarts: {
+      teaspoons: QT_TO_TSP,
+      tablespoons: QT_TO_TBSP,
+      cups: QT_TO_C,
+      quarts: UNIT_TO_UNIT,
+      grams: SUGAR_QT_TO_G, // check ingredientType
+      kilograms: SUGAR_QT_TO_KG, // check ingredientType
+      ounces: SUGAR_QT_TO_OZ, // check ingredientType
+      pounds: SUGAR_QT_TO_LB, // check ingredientType
+    },
+    grams: {
+      teaspoons: SUGAR_G_TO_TSP, // check ingredientType
+      tablespoons: SUGAR_G_TO_TBSP, // check ingredientType
+      cups: SUGAR_G_TO_C, // check ingredientType
+      quarts: SUGAR_G_TO_QT, // check ingredientType
+      grams: UNIT_TO_UNIT,
+      kilograms: G_TO_KG,
+      ounces: (g: number) => g * 0.035274,
+      pounds: (g: number) => g * 0.002205,
+    },
+    kilograms: {
+      teaspoons: SUGAR_KG_TO_TSP, // check ingredientType
+      tablespoons: SUGAR_KG_TO_TBSP, // check ingredientType
+      cups: SUGAR_KG_TO_C, // check ingredientType
+      quarts: SUGAR_KG_TO_QT, // check ingredientType
+      grams: KG_TO_G,
+      kilograms: UNIT_TO_UNIT,
+      ounces: (kg: number) => kg * 35.273962,
+      pounds: (kg: number) => kg * 2.204623,
+    },
+    ounces: {
+      teaspoons: SUGAR_KG_TO_TSP, // check ingredientType
+      tablespoons: SUGAR_KG_TO_TBSP, // check ingredientType
+      cups: SUGAR_KG_TO_C, // check ingredientType
+      quarts: SUGAR_KG_TO_QT, // check ingredientType
+      grams: (oz: number) => oz * 28.349523,
+      kilograms: (oz: number) => oz * 0.02835,
+      ounces: UNIT_TO_UNIT,
+      pounds: OZ_TO_LB,
+    },
+    pounds: {
+      teaspoons: SUGAR_LB_TO_TSP, // check ingredientType
+      tablespoons: SUGAR_LB_TO_TBSP, // check ingredientType
+      cups: SUGAR_LB_TO_C, // check ingredientType
+      quarts: SUGAR_LB_TO_QT, // check ingredientType
+      grams: (lb: number) => lb * 453.59237,
+      kilograms: (lb: number) => lb * 0.453592,
+      ounces: LB_TO_OZ,
+      pounds: UNIT_TO_UNIT,
     },
   },
 };
