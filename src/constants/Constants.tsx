@@ -2,6 +2,14 @@ import { JSX } from "react";
 
 export const INGREDIENTS: Array<string> = ["butter", "flour", "salt", "sugar"];
 
+export const INGREDIENTS_COLOR: Array<string> = [
+  "#ccffcc",
+  "#ccffff",
+  "#ccccff",
+  "#ffcccc",
+  "#ffffcc",
+];
+
 export const DROPDOWN: Record<string, JSX.Element> = {
   BUTTER: (
     <>
