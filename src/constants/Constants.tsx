@@ -1,4 +1,8 @@
 import { JSX } from "react";
+import butter from "../assets/buttonImages/butter.png";
+import flour from "../assets/buttonImages/flour.png";
+import salt from "../assets/buttonImages/salt.png";
+import sugar from "../assets/buttonImages/sugar.png";
 
 export const INGREDIENTS: Array<string> = ["butter", "flour", "salt", "sugar"];
 
@@ -9,6 +13,8 @@ export const INGREDIENTS_COLOR: Array<string> = [
   "#ffcccc",
   "#ffffcc",
 ];
+
+export const INGREDIENTS_ICON: Array<string> = [butter, flour, salt, sugar];
 
 export const DROPDOWN: Record<string, JSX.Element> = {
   BUTTER: (

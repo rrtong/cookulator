@@ -1,7 +1,10 @@
 import SelectorButton from "./SelectorButton";
 import "../styles/Selector.css";
-import butter from "../assets/buttonImages/butter.png";
-import { INGREDIENTS, INGREDIENTS_COLOR } from "../constants/Constants";
+import {
+  INGREDIENTS,
+  INGREDIENTS_COLOR,
+  INGREDIENTS_ICON,
+} from "../constants/Constants";
 
 interface SelectorProps {
   setIngredient: (name: string) => void;
@@ -19,7 +22,7 @@ const Selector: React.FC<SelectorProps> = ({
     selectorButtons.push(
       <SelectorButton
         name={INGREDIENTS[ingredient]}
-        image={butter}
+        image={INGREDIENTS_ICON[ingredient]}
         backgroundColor={INGREDIENTS_COLOR[ingredient]}
         setIngredient={setIngredient}
         setShowSelector={setShowSelector}
